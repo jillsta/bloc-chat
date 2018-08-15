@@ -29,7 +29,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       <RoomList 
-        rooms={this.props.room}
+        firebase={firebase}
       />
       </div>
     );

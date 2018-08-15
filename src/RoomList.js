@@ -21,12 +21,16 @@ componentDidMount(){
 
 render() {
      return (
-         <div className="App">
-         {this.state.rooms.map ((key,rooms) =>
-         		<h1>{ this.state.room }</h1>
+         <section className="App">
+         {
+         	this.state.rooms.map( (name,key) =>	
+         		<div key={key}>
+         		<h1 className="key">{name.key}</h1>
+         		<div className="key">{ name.name }</div>
+         		</div>
          		)
          }
-         </div>
+         </section>
      );
    }
 }
