@@ -18,6 +18,12 @@ componentDidMount(){
 	});
 }
 
+createRoom(e) {
+    this.roomsRef.push({
+        name: e.name
+    });
+}
+
 
 render() {
      return (
@@ -30,7 +36,11 @@ render() {
          		</div>
          		)
          }
-         </section>
+
+         <div className="create-room">
+
+         </div>
+                </section>
      );
    }
 }
