@@ -28,11 +28,6 @@ handleChange(event) {
     this.setState({value: event.target.value});
 }
 
-/*componentDidMount() {
-    this.roomsRef.limitToLast(1).on('child_added', function(childSnapshot) {
-    var prevChi = childSnapshot.val();
-    console.log(prevChi);
-    });*/
 
 createRoom(value) {
     this.roomsRef.push({
