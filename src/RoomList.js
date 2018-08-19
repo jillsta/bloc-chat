@@ -29,7 +29,8 @@ handleChange(event) {
 }
 
 
-createRoom(value) {
+createRoom(event,value) {
+    event.preventDefault();
     this.roomsRef.push({
         name: this.state.value
 });
@@ -42,8 +43,7 @@ render() {
          {
          	this.state.rooms.map( (name,key) =>	
          		<div key={key}>
-         		<h1 className="key">{name.key}</h1>
-         		<div className="key">{ name.name }</div>
+         		<div className={key}>{ name.name }</div>
          		</div>
          		)
          }
