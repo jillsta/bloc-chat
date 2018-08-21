@@ -7,7 +7,7 @@ class RoomList extends Component {
 	this.state = {
 		rooms: [],
         value: [],
-        key: [],
+        newRoom: '',
 	};
 	this.roomsRef = this.props.firebase.database().ref('rooms');
 
@@ -32,8 +32,8 @@ handleChange(event) {
 createRoom(event,value) {
     event.preventDefault();
     this.roomsRef.push({
-        name: this.state.value
-});
+        name: this.state.value });
+    this.state.value = ""
 }
 
 
