@@ -43,6 +43,7 @@ render() {
          {
          	this.state.rooms.map( (name,key) =>	
          		<div key={key}>
+                {/*<div className={key}>{ name.key }</div>*/} 
          		<div className={key}>{ name.name }</div>
          		</div>
          		)
