@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import MessageList from './MessageList';
 
 class RoomList extends Component {
 	constructor(props) {
@@ -7,13 +7,14 @@ class RoomList extends Component {
 	this.state = {
 		rooms: [],
         value: [],
-        newRoom: '',
+        roomKey: [],
 	};
 	this.roomsRef = this.props.firebase.database().ref('rooms');
 
 
 this.handleChange = this.handleChange.bind(this)
 this.createRoom = this.createRoom.bind(this)
+this.clickRoom = this.clickRoom.bind(this)
 }
 
 componentDidMount(){
@@ -33,22 +34,33 @@ createRoom(event,value) {
     event.preventDefault();
     this.roomsRef.push({
         name: this.state.value });
-    this.state.value = ""
+        this.setState.value = ""
+}
+
+clickRoom(key) {
+    let roomKey;
+    this.setState({roomKey: key});
+    console.log(key);
 }
 
 
 render() {
      return (
          <section className="App">
+         <div>
+         <table>
+         <tbody>
          {
          	this.state.rooms.map( (name,key) =>	
-         		<div key={key}>
-                {/*<div className={key}>{ name.key }</div>*/} 
-         		<div className={key}>{ name.name }</div>
-         		</div>
+         		<tr key={key} onClick={(e) => this.clickRoom(key)}>
+                {/*<td className={key}>{ name.key }</td>*/} 
+         		<td className={key}>{ name.name }</td>
+         		</tr>
          		)
          }
-
+         </tbody>
+         </table>
+         </div>
             <div className="create-room">
             <form onSubmit={this.createRoom}>
             <label>

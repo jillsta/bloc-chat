@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './RoomList';
+import MessageList from './MessageList';
 
 //src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"
 
@@ -22,10 +23,12 @@ class App extends Component {
       <div className="App">
       <RoomList 
         firebase={firebase}
+        clickRoom={() => this.clickRoom(this.state.key)}
       />
-      {/*<MessageList
+      <MessageList
         firebase={firebase}
-      />*/}
+        isHidden={!this.isHidden}
+      />
       </div>
     );
   }
