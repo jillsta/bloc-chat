@@ -17,18 +17,35 @@ import MessageList from './MessageList';
   };
   firebase.initializeApp(config);
 
+
+
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      activeRoom:null
+    }
+  }
+
+setActiveRoom=(selectRoom)=> {
+  this.setState ({
+    activeRoom: selectRoom
+  })}
+
   render() {
     return (
       <div className="App">
       <RoomList 
         firebase={firebase}
-        clickRoom={() => this.clickRoom(this.state.key)}
+        setActiveRoom={this.setActiveRoom}
       />
       <MessageList
         firebase={firebase}
-        isHidden={!this.isHidden}
+        activeRoom={this.state.activeRoom}
       />
+
+
       </div>
     );
   }

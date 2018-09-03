@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import MessageList from './MessageList';
 
 class RoomList extends Component {
 	constructor(props) {
@@ -7,14 +6,12 @@ class RoomList extends Component {
 	this.state = {
 		rooms: [],
         value: [],
-        roomKey: [],
 	};
 	this.roomsRef = this.props.firebase.database().ref('rooms');
 
 
 this.handleChange = this.handleChange.bind(this)
 this.createRoom = this.createRoom.bind(this)
-this.clickRoom = this.clickRoom.bind(this)
 }
 
 componentDidMount(){
@@ -37,11 +34,6 @@ createRoom(event,value) {
         this.setState.value = ""
 }
 
-clickRoom(key) {
-    let roomKey;
-    this.setState({roomKey: key});
-    console.log(key);
-}
 
 
 render() {
@@ -51,10 +43,9 @@ render() {
          <table>
          <tbody>
          {
-         	this.state.rooms.map( (name,key) =>	
-         		<tr key={key} onClick={(e) => this.clickRoom(key)}>
-                {/*<td className={key}>{ name.key }</td>*/} 
-         		<td className={key}>{ name.name }</td>
+         	this.state.rooms.map( (name,index) =>	
+         		<tr key={index} onClick={(e)=>this.props.setActiveRoom(name.key)}>
+         		<td className={index}>{ name.name }</td>
          		</tr>
          		)
          }
