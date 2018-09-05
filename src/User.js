@@ -21,7 +21,7 @@ constructor(props){
 loginUser() {
 	const provider = new this.props.firebase.auth.GoogleAuthProvider();
 	this.props.firebase.auth().signInWithPopup( provider );
-// 	from firebase documentation:
+// 	from firebase documentation - gets firebase error:
 // 	firebase.auth().signInWithPopup(provider).then(function(result) {
 // 	var token = result.credential.accessToken;
 // 	var user = result.user;
