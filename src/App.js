@@ -6,8 +6,6 @@ import MessageList from './MessageList';
 import User from './User';
 
 
-//src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"
-
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCT4ly9M2fNLRYwvQDRTxEUOgljc0opGT0",
@@ -18,8 +16,6 @@ import User from './User';
     messagingSenderId: "19757901664"
   };
   firebase.initializeApp(config);
-  //export const provider = new firebase.auth.GoogleAuthProvider();
-  //export const auth = firebase.auth();
 
 
 
@@ -29,11 +25,11 @@ class App extends Component {
 
     this.state = {
       activeRoom: null,
-      user: null
+      user: null,
     }
   }
 
-setActiveRoom=(selectRoom)=> {
+setActiveRoom=(selectRoom) => {
   this.setState ({
     activeRoom: selectRoom
   })}
@@ -50,15 +46,20 @@ setActiveRoom=(selectRoom)=> {
 //add a  componentDidMount method to the User component that registers an  
 //onAuthStateChanged event handler.
 
-// componentDidMount() {
-// this.props.firebase.auth().onAuthStateChanged( user => {
-//   this.props.setUser(user);
-// });
-//}
+/*componentDidMount() {
+ this.props.firebase.auth().onAuthStateChanged( user => {
+   this.props.setUser(user);
+ });
+}*/
 
-setUser
+setUser=(newUser) => {
+  this.setState({
+    user: newUser
+  })}
 
   render() {
+    console.log(this.state.user);
+
     return (
       <div className="App">
       <RoomList 
@@ -70,7 +71,13 @@ setUser
         activeRoom={this.state.activeRoom}
       />
 
-      <User onClick={this.signIn} setUser={this.setUser} Sign In
+      <User 
+        firebase={firebase} 
+        onClick={this.signIn} 
+        setUser={this.setUser}
+        loginUser={this.loginUser}
+        logoutUser={this.logoutUser}
+        user={this.state.user}
       />
       </div>
     );

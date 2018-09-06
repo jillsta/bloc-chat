@@ -9,10 +9,11 @@ class User extends Component {
 constructor(props){
 	super(props);
 	this.state = {
-		user: null,
+		user: [],
 	};
 
 	this.loginUser = this.loginUser.bind(this);
+	this.logoutUser = this.logoutUser.bind(this);
 }
 
 //Create a User component that renders a sign-in button. 
@@ -21,33 +22,29 @@ constructor(props){
 loginUser() {
 	const provider = new this.props.firebase.auth.GoogleAuthProvider();
 	this.props.firebase.auth().signInWithPopup( provider );
-// 	from firebase documentation - gets firebase error:
-// 	firebase.auth().signInWithPopup(provider).then(function(result) {
-// 	var token = result.credential.accessToken;
-// 	var user = result.user;
-// }).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // The email of the user's account used.
-//   var email = error.email;
-//   // The firebase.auth.AuthCredential type that was used.
-//   var credential = error.credential;
-//   // ...
-// });
 	}
+
+logoutUser() {
+	this.props.firebase.auth().signOut();
+}	
+
 
 componentDidMount() {
 this.props.firebase.auth().onAuthStateChanged( user => {
-  this.props.setUser(user);
+  	this.props.setUser(user);
+
 });
 }
 
 render () {
+	console.log(this.state.isLoggedIn);
 return (
-
 		<div>
-			<button onClick={this.loginUser}> button
+		<div> 
+			{this.props.user? this.props.user.displayName : 'Guest'} </div>
+			<button onClick={this.loginUser}> Login
+			</button>
+			<button onClick={this.logoutUser}> Logout 
 			</button>
 		</div>
 
