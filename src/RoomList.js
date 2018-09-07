@@ -30,8 +30,8 @@ handleChange(event) {
 createRoom(event,value) {
     event.preventDefault();
     this.roomsRef.push({
-        name: this.state.value });
-        this.setState.value = ""
+        name: this.state.value })
+    this.setState.value="";
 }
 
 
@@ -39,7 +39,16 @@ createRoom(event,value) {
 render() {
      return (
          <section className="App">
-         <div>
+          <div className="create-room">
+            <form onSubmit={this.createRoom}>
+            <label>
+            Input Room Name
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+            </form>
+            </div>
+         <div className="list-rooms">
          <table>
          <tbody>
          {
@@ -52,15 +61,7 @@ render() {
          </tbody>
          </table>
          </div>
-            <div className="create-room">
-            <form onSubmit={this.createRoom}>
-            <label>
-            Input Room Name
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-            </form>
-            </div>
+           
         </section>
      );
    }

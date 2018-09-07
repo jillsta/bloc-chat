@@ -34,23 +34,6 @@ setActiveRoom=(selectRoom) => {
     activeRoom: selectRoom
   })}
 
-//You'll need to create a setUser method on App, and pass that method down to the  
-//User component as a prop.
-//setUser() {
-//  this.setState ({
-//    user: newUser
-//  })
-//}
-
-// Finally, to respond to sign-in and sign-out events in Firebase, 
-//add a  componentDidMount method to the User component that registers an  
-//onAuthStateChanged event handler.
-
-/*componentDidMount() {
- this.props.firebase.auth().onAuthStateChanged( user => {
-   this.props.setUser(user);
- });
-}*/
 
 setUser=(newUser) => {
   this.setState({
@@ -65,6 +48,8 @@ setUser=(newUser) => {
       <RoomList 
         firebase={firebase}
         setActiveRoom={this.setActiveRoom}
+        user={this.props.user}
+        value={this.props.value}
       />
       <MessageList
         firebase={firebase}
