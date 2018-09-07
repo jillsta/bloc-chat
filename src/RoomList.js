@@ -31,7 +31,9 @@ createRoom(event,value) {
     event.preventDefault();
     this.roomsRef.push({
         name: this.state.value })
-    this.setState.value="";
+    this.setState({
+        value:""
+    })
 }
 
 
