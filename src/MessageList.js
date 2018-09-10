@@ -32,11 +32,14 @@ componentDidMount(){
 
  createMessage = (event) => {
      event.preventDefault();
+     if (this.props.activeRoom === null) {
+     	null
+     } else {
      this.messageRef.push({	
         content: this.state.value,
         username: this.props.user.displayName,
         roomId: this.props.activeRoom 
-    })
+    })}
      this.setState({
          value:""
      })
@@ -44,7 +47,6 @@ componentDidMount(){
 
 
 render() {
-	console.log(this.props.setUser);
     let messageRoom = this.state.messages.map((message,index)=>{
     		if (this.props.activeRoom == message.roomId)
 			return <div key={index}> 
@@ -66,7 +68,7 @@ render() {
             <input type="submit" value="Submit" />
             </form>
             </div>	
-					{ messageRoom }
+					{this.props.activeRoom? messageRoom : "Please select a room" }
     	</section>
     );
 }}
