@@ -37,7 +37,6 @@ this.props.firebase.auth().onAuthStateChanged( user => {
 }
 
 render () {
-	console.log(this.state.isLoggedIn);
 return (
 		<div>
 		<div> 
