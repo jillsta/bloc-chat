@@ -41,7 +41,6 @@ setUser=(newUser) => {
   })}
 
   render() {
-    console.log(this.state.user);
 
     return (
       <div className="App">
@@ -53,7 +52,11 @@ setUser=(newUser) => {
       />
       <MessageList
         firebase={firebase}
+        value={this.props.value}
         activeRoom={this.state.activeRoom}
+        user={this.state.user}
+        onSubmit={this.createMessage}
+        setActiveRoom={this.setActiveRoom}
       />
 
       <User 
